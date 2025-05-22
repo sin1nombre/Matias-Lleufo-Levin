@@ -1,21 +1,22 @@
 // js/script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // --- CONSTANTES Y DATOS ---
+    // precio base y recargos
     const precioBase = 3500000;
+    // Recargos por color
     const recargosColor = {
         blanco: 0,
         negro: 800000,
         rojo: 400000
     };
+    // Recargo por adicionales
     const preciosAdicionales = {
-        addNeblineros: { nombre: "Neblineros", valor: 80000 },
-        addPortaequipaje: { nombre: "Portaequipaje", valor: 350000 },
-        addMascotas: { nombre: "Cinturones y arnés para mascotas", valor: 50000 },
-        addLucesLed: { nombre: "Luces LED", valor: 70000 },
-        addCamaraTrasera: { nombre: "Cámara trasera", valor: 100000 }
+        agregarNeblineros: { nombre: "Neblineros", valor: 80000 },
+        agregarPortaequipaje: { nombre: "Portaequipaje", valor: 350000 },
+        agregarCinturones: { nombre: "Cinturones y arnés para mascotas", valor: 50000 },
+        agregarLucesLed: { nombre: "Luces LED", valor: 70000 },
+        agregarCamaraTrasera: { nombre: "Cámara trasera", valor: 100000 }
     };
 
-    // --- ELEMENTOS DOM ---
     const imgAuto = document.getElementById('imagenAuto');
     const opcionesColor = document.querySelectorAll('input[name="colorOpciones"]');
     const checkaAdicionales = document.querySelectorAll('.adicional');
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function actualizarImagen() {
         const nuevaRutaImagen = `imagenes/auto-${colorSeleccionado}.jpg`;
         imgAuto.src = nuevaRutaImagen;
-        imgAuto.alt = `Automóvil El Veloz color ${colorSeleccionado}`;
+        imgAuto.alt = `Automóvil El Cacharro color ${colorSeleccionado}`; 
         console.log("Color cambiado a:", colorSeleccionado, "Nueva imagen intentada:", nuevaRutaImagen);
         imgAuto.onerror = function() {
             this.onerror = null;
@@ -55,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (colorSeleccionado === 'blanco') {
             textoDetalleRecargo = `<p class="small mb-1"><em>Costo por color: Color Base ($0)</em></p>`;
         } else {
-            // Capitalizar el nombre del color para el detalle
+            // Mostrar el recargo por color
             const nombreColorParaDetalle = colorSeleccionado.charAt(0).toUpperCase() + colorSeleccionado.slice(1);
-            textoDetalleRecargo = `<p class="small mb-1"><em>Recargo color ${nombreColorParaDetalle}: +$${recargoActual.toLocaleString('es-CL')}</em></p>`;
+            textoDetalleRecargo = `<p class="small mb-1"><em>Recargo por cambio de color a ${nombreColorParaDetalle}: +$${recargoActual.toLocaleString('es-CL')}</em></p>`;
         }
         // Actualizar el HTML del detalle del recargo
         detalleRecargoColorEl.innerHTML = textoDetalleRecargo;

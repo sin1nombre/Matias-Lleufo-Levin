@@ -1,0 +1,14 @@
+
+body {
+    font-family: 'Arial', sans-serif; 
+}
+
+#imagenAuto {
+    max-height: 450px; 
+    object-fit: contain; 
+    border-bottom: 1px solid #eee;
+}
+
+#resumenCompra h4 {
+    color: green; 
+}
